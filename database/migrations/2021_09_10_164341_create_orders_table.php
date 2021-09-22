@@ -17,10 +17,11 @@ class CreateOrdersTable extends Migration
             Schema::create('orders', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('status_id')->constrained('order_statuses');
+                $table->foreignId('user_id')->constrained('users');
                 $table->string('name', 35);
                 $table->string('surname', 50);
-                $table->string('phone', 15)->unique();
-                $table->string('email')->unique();
+                $table->string('phone', 15);
+                $table->string('email');
                 $table->string('country', 58);
                 $table->string('city', 58);
                 $table->string('address', 58);
