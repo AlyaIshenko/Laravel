@@ -20,21 +20,34 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('products', [\App\Http\Controllers\ProductsController::class, 'index'])->name('products');
-Route::get('products/{products}', [\App\Http\Controllers\ProductsController::class, 'show'])->name('products.show');
+Route::get('products', 'ProductsController@index')->name('products');
+Route::get('products/{id}', 'ProductsController@show')->name('products.show');
 
-Route::get('categories', [\App\Http\Controllers\CategoriesController::class, 'index'])->name('categories');
-Route::get('categories/{category}', [\App\Http\Controllers\CategoriesController::class, 'show'])->name('categories.show');
-
-
+Route::get('categories', 'CategoriesController@index')->name('categories');
+Route::get('categories/{category}', 'CategoriesController@show')->name('categories.show');
 
 // account/orders/5
 Route::namespace('Account')->prefix('account')->name('account.')->middleware(['auth'])->group(function () {
 });
 
 // admin/products/create 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/', 'BoardController')->name('home'); //admin.home
+
+    Route::name('orders')->group(function () {
+        Route::get('orders', 'OrdersController@index');
+        Route::get('orders/{orders}/edit', 'OrdersController@edit')->name('.edit');
+    });
+
+    Route::name('products')->group(function () {
+        Route::get('products', 'ProductsController@index');
+        Route::get('products/{product}/edit', 'ProductsController@edit')->name('.edit');
+        Route::put('products/{product}/update', 'ProductsController@update')->name('.update');
+        Route::delete('products/{product}', 'ProductsController@destroy')->name('.delete');
+    });
+    // Route::name('categories')->group(function () {
+    // Route::name('users')->group(function () {
+
 });

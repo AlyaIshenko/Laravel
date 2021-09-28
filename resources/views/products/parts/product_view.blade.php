@@ -1,7 +1,7 @@
 <div>
     <div class="card mb-4 shadow-sm">
         @if($product->thumbnail)
-        <img src="{{ $product->thumbnail }}" height="225" class="card-img-top" style="max-width: 100%; margin: 0 auto; display: block;">
+        <img src="{{ $product->thumbnail }}" height="400" class="card-img-top" style="max-width: 100%; margin: 0 auto; display: block;">
         @endif
         <div class="card-body">
             <p class="card-title">{{ __($product->title) }}</p>
@@ -21,7 +21,7 @@
                     </a>
                 </div>
 
-                <span class="text-muted">{{ $product->price }}$</span>
+                <span class="text-muted">{{ $product->getPrice() }}$</span>
             </div>
         </div>
     </div>

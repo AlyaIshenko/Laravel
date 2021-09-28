@@ -18,7 +18,7 @@ class Product extends Model
         'price',
         'discount',
         'in_stock',
-        'thumbnail'
+        'thumbnail',
 
     ];
 
@@ -35,5 +35,11 @@ class Product extends Model
     public function orders()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function getPrice()
+    {
+        $price = is_null($this->discount) ? $this->price : ($this->price - ($this->price * ($this->discount / 100)));
+        return round($price, 2);
     }
 }
