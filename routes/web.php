@@ -46,11 +46,29 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
 
     Route::name('products')->group(function () {
         Route::get('products', 'ProductsController@index');
+        Route::get('products/{product}/create', 'ProductsController@create')->name('.create');
         Route::get('products/{product}/edit', 'ProductsController@edit')->name('.edit');
+        Route::get('products/{product}/store', 'ProductsController@store')->name('.store');
         Route::put('products/{product}/update', 'ProductsController@update')->name('.update');
-        Route::delete('products/{product}', 'ProductsController@destroy')->name('.delete');
+        Route::delete('products/{product}', 'ProductsController@destroy')->name('.destroy');
     });
-    // Route::name('categories')->group(function () {
-    // Route::name('users')->group(function () {
 
+    Route::name('categories')->group(function () {
+        Route::get('categories', 'ProductsController@index');
+        Route::get('categories/{category}/create', 'CategoriesController@create')->name('.create');
+        Route::get('categories/{category}/edit', 'CategoriesController@edit')->name('.edit');
+        Route::get('categories/{category}/store', 'CategoriesController@store')->name('.store');
+        Route::put('categories/{category}/update', 'CategoriesController@update')->name('.update');
+        Route::delete('categories/{category}', 'CategoriesController@destroy')->name('.destroy');
+    });
+
+    Route::name('users')->group(function () {
+        Route::get('users', 'UsersController@index');
+        Route::get('users/{user}/show', 'UsersController@show')->name('.show');
+        Route::get('users/{user}/create', 'UsersController@create')->name('.create');
+        Route::get('users/{user}/edit', 'UsersController@edit')->name('.edit');
+        Route::get('users/{user}/store', 'UsersController@store')->name('.store');
+        Route::put('users/{user}/update', 'UsersController@update')->name('.update');
+        Route::delete('users/{user}', 'UsersController@destroy')->name('.destroy');
+    });
 });
