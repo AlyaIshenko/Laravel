@@ -7,5 +7,13 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    //
+    // public function edit()
+    // {
+    // }
+    // public function update()
+    // {
+    // }
+    // public function delete()
+    // {
+    // }
 }
