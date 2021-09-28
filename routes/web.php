@@ -30,11 +30,9 @@ Route::get('categories/{category}', 'CategoriesController@show')->name('categori
 
 // account/orders/5
 Route::namespace('Account')->prefix('account')->name('account.')->middleware(['auth'])->group(function () {
-    Route::name('account')->group(function () {
-        Route::get('account', 'UserController@index');
-        Route::get('account/{account}/edit', 'AccountController@edit')->name('.edit');
-        Route::put('account/{account}/update', 'AccountController@update')->name('.update');
-    });
+    Route::get('/', 'AccountController@index');
+    Route::get('/{account}/edit', 'AccountController@edit')->name('.edit');
+    Route::put('/{account}/update', 'AccountController@update')->name('.update');
 });
 
 // admin/products/create 
