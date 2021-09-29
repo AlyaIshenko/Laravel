@@ -46,20 +46,20 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
 
     Route::name('products')->group(function () {
         Route::get('products', 'ProductsController@index');
-        Route::get('products/{product}/create', 'ProductsController@create')->name('.create');
-        Route::get('products/{product}/edit', 'ProductsController@edit')->name('.edit');
-        Route::get('products/{product}/store', 'ProductsController@store')->name('.store');
-        Route::put('products/{product}/update', 'ProductsController@update')->name('.update');
-        Route::delete('products/{product}', 'ProductsController@destroy')->name('.destroy');
+        Route::get('products/create', 'ProductsController@create')->name('.create');
+        Route::get('products/{id}/edit', 'ProductsController@edit')->name('.edit');
+        Route::get('products/store', 'ProductsController@store')->name('.store');
+        Route::put('products/update', 'ProductsController@update')->name('.update');
+        Route::delete('products/{id}', 'ProductsController@destroy')->name('.destroy');
     });
 
     Route::name('categories')->group(function () {
         Route::get('categories', 'ProductsController@index');
-        Route::get('categories/{category}/create', 'CategoriesController@create')->name('.create');
-        Route::get('categories/{category}/edit', 'CategoriesController@edit')->name('.edit');
-        Route::get('categories/{category}/store', 'CategoriesController@store')->name('.store');
-        Route::put('categories/{category}/update', 'CategoriesController@update')->name('.update');
-        Route::delete('categories/{category}', 'CategoriesController@destroy')->name('.destroy');
+        Route::get('categories/create', 'CategoriesController@create')->name('.create');
+        Route::get('categories/{id}/edit', 'CategoriesController@edit')->name('.edit');
+        Route::get('categories/store', 'CategoriesController@store')->name('.store');
+        Route::put('categories/update', 'CategoriesController@update')->name('.update');
+        Route::delete('categories/{id}', 'CategoriesController@destroy')->name('.destroy');
     });
 
     Route::name('users')->group(function () {
