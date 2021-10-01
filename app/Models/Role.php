@@ -21,7 +21,7 @@ class Role extends Model
             'name',
             '=',
             Config::get('constants.db.roles.admin')
-        );
+        )->first();
 
         return auth()->user()->role_id === $adminRole->id;
     }
