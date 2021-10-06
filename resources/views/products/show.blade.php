@@ -24,7 +24,7 @@
         </div>
 
         @auth
-        @if($product->in_stock > 0)
+        <!-- @if($product->in_stock > 0)
         <hr>
         <div>
             <p>Add to Cart: </p>
@@ -39,7 +39,7 @@
                 <button type="submit" class="btn btn-primary mb-2">Buy</button>
             </form>
         </div>
-        @endif
+        @endif -->
         @endauth
     </div>
 </div>

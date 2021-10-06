@@ -17,9 +17,27 @@ class OrdersController extends Controller
         return view('admin/orders/index', compact('orders'));
     }
 
+    public function create()
+    {
+    }
+
+    public function store(Request $request)
+    {
+        return redirect()->route('admin.orders');
+    }
+
     public function edit(Order $order)
     {
         $products = $order->products()->get();
         return view('admin/orders/edit', compact('order', 'products'));
+    }
+
+    public function update()
+    {
+        return redirect()->route('admin.orders');
+    }
+
+    public function destroy()
+    {
     }
 }

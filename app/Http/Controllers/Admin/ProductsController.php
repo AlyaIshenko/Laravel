@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,29 +12,31 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $product = Product::all();
-        return view('admin/products/index', compact('product'));
+        $products = Product::with('category')->paginate(55);
+        return view('admin/products/index', compact('products'));
     }
     public function create()
     {
-        return view('admin/products/create');
+        $categories = Category::all();
+        return view('admin/products/create', compact('categories'));
     }
-    public function store()
+    public function store(CreateProductRequest $request)
     {
-        return redirect()->route('admin/products/index');
+        dd($request->all());
+        return redirect()->route('admin.products');
     }
-    public function edit(int $id)
+    public function edit(Product $product)
     {
-        $product = Product::with('category')->find($id);
-        return view('admin/products/edit', compact('product'));
+        $categories = Category::all();
+        return view('admin/products/edit', ['product' => $product, 'categories' => $categories]);
     }
     public function update()
     {
-        return redirect()->route('admin/products/index');
+        return redirect()->route('admin.products');
     }
-    public function destroy(int $id)
+    public function destroy(Product $products)
     {
-        $product = Product::find($id)->delete();
-        return redirect()->route('admin/products/index', compact('product'));
+        $products = Product::find($products)->delete();
+        return redirect()->route('admin/products', compact('products'));
     }
 }
