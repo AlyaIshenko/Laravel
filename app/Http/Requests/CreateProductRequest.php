@@ -28,13 +28,13 @@ class CreateProductRequest extends FormRequest
             'title' => ['required', 'string', 'max:255', 'unique:products'],
             'description' => ['required', 'string', 'min:20'],
             'short_description' => ['required', 'string', 'min:5', 'max:150'],
-            'SKU' => ['required', 'string', 'min:1', 'max:35', 'unique:products'],
+            'SKU' => ['required', 'min:1', 'max:35', 'unique:products'],
             'price' => ['required', 'numeric', 'min:1'],
-            'discount' => ['required', 'numeric', 'digits_between:0,100'],
+            'discount' => ['required', 'numeric'],
             'in_stock' => ['required', 'numeric'],
-            // 'thumbnail' => ['required', 'image'],
-            // 'images.*' => ['sometimes', 'image'],
-            // 'category_id' => 'required|numeric|exists:categories,id',
+            'thumbnail' => ['required', 'image:jpeg,png'],
+            'images.*' => ['image:jpeg,png'],
+            'category' => ['required', 'numeric']
         ];
     }
 }

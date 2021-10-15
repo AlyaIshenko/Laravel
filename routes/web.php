@@ -53,7 +53,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
         Route::get('products', 'ProductsController@index');
         Route::get('products/create', 'ProductsController@create')->name('.create');
         Route::get('products/{product}/edit', 'ProductsController@edit')->name('.edit');
-        Route::post('products/store', 'ProductsController@store')->name('.store');
+        Route::post('products', 'ProductsController@store')->name('.store');
         Route::put('products/{product}/update', 'ProductsController@update')->name('.update');
         Route::delete('products/{product}', 'ProductsController@destroy')->name('.destroy');
     });
@@ -62,7 +62,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
         Route::get('categories', 'ProductsController@index');
         Route::get('categories/create', 'CategoriesController@create')->name('.create');
         Route::get('categories/{category}/edit', 'CategoriesController@edit')->name('.edit');
-        Route::get('categories/store', 'CategoriesController@store')->name('.store');
+        Route::get('categories', 'CategoriesController@store')->name('.store');
         Route::put('categories/{category}/update', 'CategoriesController@update')->name('.update');
         Route::delete('categories/{category}', 'CategoriesController@destroy')->name('.destroy');
     });

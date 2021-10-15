@@ -69,13 +69,41 @@
                 <div class="form-group row">
                     <label for="categories" class="col-md-4 col-form-lable text-md-right">{{__('Categories')}}</label>
                     <div class="col-md-6">
-                        <select id="categories" class="form-control @error('categories') is-invalid @enderror" name="categories" multiple>
+                        <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" multiple>
                             @foreach($categories as $category)
                             <option value="{{$category['id']}}"> {{$category['name'] }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="thumbnail" class="col-md-4 col-form-lable text-md-right">{{__('Thumbnail')}}</label>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img src="#" alt="" id="thumbnail-preview">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="file" name="thumbnail" id="thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="images" class="col-md-4 col-form-lable text-md-right">{{__('Images')}}</label>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row images-wrapper"></div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="file" name="images[]" id="images" onChange="readMultiFiles" multiple>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <div class="col-md-10 text-righr">
                         <input type="submit" class="btn btn-info" value="Update Product">
@@ -85,5 +113,35 @@
         </div>
     </div>
 </div>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    if (window.FileReader) {
+        document.getElementById("images").onchange = function() {
+            let counter = -1,
+                file;
+            $('.images-wrapper').html('');
+            let template = '<div class="col-sm-12 d-flex justify-content-center align-items-center"> <img scr = "__url__"class = "card-img-top" style = "max-width: 80%; margin: 0 auto; display: block;" ></div>';
+            while (file = this.files[++counter]) {
+                let reader = new FileReader();
+                reader.onloadend = (function() {
+                    return function() {
+                        let img = template.replace('__url__', this.result);
+                        $('.images-wrapper').append(img)
+                    }
+                })(file);
+                reader.readAsDataURL(file);
+            }
+        }
+    }
 
+    $(document).ready(function(e) {
+        $('#thumbnail').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#thumbnail-preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
 @endsection
