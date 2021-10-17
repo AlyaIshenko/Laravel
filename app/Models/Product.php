@@ -41,7 +41,8 @@ class Product extends Model
     public function getPrice()
     {
         $price = is_null($this->discount) ? $this->price : ($this->price - ($this->price * ($this->discount / 100)));
-        return round($price, 2);
+        $price = round($price, 2);
+        return $price < 0 ? 0 : $price;
     }
     public function setThumbnailAttribute($image)
     {

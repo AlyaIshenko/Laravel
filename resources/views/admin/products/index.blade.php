@@ -30,7 +30,7 @@
                     @foreach($products as $product)
                     <tr>
                         <td class="text-center" scope="col">{{$product->id}}</td>
-                        <td class="text-center" scope="col"><img src="{{$product->thumbnail}}" width="75" height="100" alt=""></td>
+                        <td class="text-center" scope="col"><img src="{{Storage::url($product->thumbnail)}}" width="75" height="100" alt=""></td>
                         <td class="text-center" scope="col">{{$product->title}}</td>
                         <td class="text-center" scope="col">{{$product->in_stock}}</td>
                         <td class="text-center" scope="col">@each('categories.parts.category_view', [$product->category], 'category')

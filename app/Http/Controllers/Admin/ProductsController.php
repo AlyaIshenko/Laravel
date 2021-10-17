@@ -7,6 +7,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -22,7 +23,14 @@ class ProductsController extends Controller
     }
     public function store(CreateProductRequest $request)
     {
-        dd($request->all());
+        $fields = $request->validated();
+        $category = Category::find($fields['category']);
+
+        $images = !empty($fields['images']) ? $fields['images'] : [];
+        // unset($fields['category']);
+        // unset($fields['images']);
+
+        $product = $category->products()->create($fields);
         return redirect()->route('admin.products');
     }
     public function edit(Product $product)
