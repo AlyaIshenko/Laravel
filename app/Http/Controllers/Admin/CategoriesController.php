@@ -19,7 +19,7 @@ class CategoriesController extends Controller
     }
     public function store()
     {
-        return redirect()->route('admin/categories/index');
+        return redirect()->route('admin/categories');
     }
     public function edit(int $id)
     {
@@ -28,11 +28,11 @@ class CategoriesController extends Controller
     }
     public function update()
     {
-        return redirect()->route('admin/categories/index');
+        return redirect()->route('admin/categories');
     }
     public function destroy(int $id)
     {
         $category = Category::find($id)->delete();
-        return redirect()->route('admin/categories/index', compact('category'));
+        return redirect()->route('admin/categories', compact('category'));
     }
 }

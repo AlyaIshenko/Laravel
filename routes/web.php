@@ -59,10 +59,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
     });
 
     Route::name('categories')->group(function () {
-        Route::get('categories', 'ProductsController@index');
+        Route::get('categories', 'CategoriesController@index');
         Route::get('categories/create', 'CategoriesController@create')->name('.create');
         Route::get('categories/{category}/edit', 'CategoriesController@edit')->name('.edit');
-        Route::get('categories', 'CategoriesController@store')->name('.store');
+        Route::post('categories', 'CategoriesController@store')->name('.store');
         Route::put('categories/{category}/update', 'CategoriesController@update')->name('.update');
         Route::delete('categories/{category}', 'CategoriesController@destroy')->name('.destroy');
     });
@@ -72,7 +72,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['auth', 
         Route::get('users/{user}/show', 'UsersController@show')->name('.show');
         Route::get('users/{user}/create', 'UsersController@create')->name('.create');
         Route::get('users/{user}/edit', 'UsersController@edit')->name('.edit');
-        Route::get('users/{user}/store', 'UsersController@store')->name('.store');
+        Route::post('users/{user}/store', 'UsersController@store')->name('.store');
         Route::put('users/{user}/update', 'UsersController@update')->name('.update');
         Route::delete('users/{user}', 'UsersController@destroy')->name('.destroy');
     });
