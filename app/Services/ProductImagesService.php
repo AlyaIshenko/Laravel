@@ -13,8 +13,9 @@ class ProductImagesService implements ProductImagesServiceInterface
         if (!empty($images)) {
             foreach ($images as $image) {
                 $path = ImageService::upload($image);
-                $newImage = ProductImage::create(['path' => $path]);
-                $product->gallery()->attach($newImage);
+                $product->gallery()->create(['path' => $path]);
+                // $newImage = ProductImage::create(['path' => $path]);
+                // $product->gallery()->attach($newImage);
             }
         }
     }
