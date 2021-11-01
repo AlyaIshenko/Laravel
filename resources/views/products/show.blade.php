@@ -24,22 +24,7 @@
         </div>
 
         @auth
-        <!-- @if($product->in_stock > 0)
-        <hr>
-        <div>
-            <p>Add to Cart: </p>
-            <form action="{{route('cart.add', $product) }}" method="POST" class="form-inline">
-                @csrf
-                @method('post')
-                <div class="form-group mx-sm-3 mb-2">
-                    <input type="hidden" name="price_with_discount">
-                    <label for="product_count" class="sr-only">Count: </label>
-                    <input type="number" name="product_count" class="form-control" id="product_count" min="1" max="{{$product->in_stock}}" value="1">
-                </div>
-                <button type="submit" class="btn btn-primary mb-2">Buy</button>
-            </form>
-        </div>
-        @endif -->
+
         @endauth
     </div>
 </div>

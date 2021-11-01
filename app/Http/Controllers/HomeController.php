@@ -18,7 +18,6 @@ class HomeController extends Controller
         $categories = Category::all()->take(5);
         $products = Product::all()->take(3);
 
-
         return view('home', compact('categories', 'products'));
     }
 }

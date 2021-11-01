@@ -43,9 +43,9 @@ class ProductsController extends Controller
     {
         return redirect()->route('admin.products');
     }
-    public function destroy(Product $products)
+    public function destroy(Product $product)
     {
-        $products = Product::find($products)->delete();
+        $product = Product::find($product)->delete();
         return redirect()->route('admin/products', compact('products'));
     }
 }

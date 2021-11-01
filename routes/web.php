@@ -29,6 +29,7 @@ Route::get('/products/{product}', 'ProductsController@show')->name('products.sho
 
 Route::get('categories', 'CategoriesController@index')->name('categories');
 Route::get('categories/{category}', 'CategoriesController@show')->name('categories.show');
+Route::delete('ajax/productImage/{image_id}', 'ProductImageController@destroy')->name('ajax.products.images.delete');
 
 // account/orders/5
 Route::namespace('Account')->prefix('account')->name('account.')->middleware(['auth'])->group(function () {
