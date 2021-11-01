@@ -1,9 +1,6 @@
 <div>
     <div class="card mb-4 shadow-sm">
         @if(Storage::has($product->thumbnail))
-        <!-- @php
-        dd(Storage::has($product->thumbnail));
-        @endphp -->
         <img src="{{Storage::url($product->thumbnail) }}" height="400" class="card-img-top" style="max-width: 100%; margin: 0 auto; display: block;">
         @endif
         <div class="card-body">
