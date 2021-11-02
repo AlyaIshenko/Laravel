@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\ProductImagesService;
@@ -26,8 +27,6 @@ class ProductsController extends Controller
     {
         $fields = $request->validated();
         $images = !empty($fields['images']) ? $fields['images'] : [];
-        // unset($fields['category']);
-        // unset($fields['images']);
         $category = Category::find($fields['category']);
         $product = $category->products()->create($fields);
         ProductImagesService::attach($product, $images);
@@ -36,16 +35,22 @@ class ProductsController extends Controller
     }
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        return view('admin/products/edit', ['product' => $product, 'categories' => $categories]);
+        $categories = Category::all('id', 'name')->toArray();
+        return view('admin/products/edit', compact('product', 'categories'));
     }
-    public function update()
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        return redirect()->route('admin.products');
+        $product->update($request->validated());
+
+        if (!empty($request->images)) {
+            ProductImagesService::attach($product, $request->images);
+        }
+
+        return redirect()->back()->with("status", "The product {$product->id} was successfully updated!");
     }
     public function destroy(Product $product)
     {
-        $product = Product::find($product)->delete();
-        return redirect()->route('admin/products', compact('products'));
+        $product = Product::find($product['id'])->delete();
+        return redirect()->route('admin/products', compact('product'));
     }
 }
