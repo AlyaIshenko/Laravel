@@ -42,7 +42,7 @@
                                 @method('DELETE')
                                 <input type="submit" class="btn btn-danger form-control" value="Remove">
                             </form>
-                            <a href="{{route('products.show', $product)}}" class="btn btn-outline-success form-control">View</a>
+                            <a href="{{route('products.show', $product)}}" class="btn btn-outline-success form-control">Show more</a>
                         </td>
                     </tr>
                     @endforeach

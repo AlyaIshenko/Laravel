@@ -51,6 +51,6 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         $product = Product::find($product['id'])->delete();
-        return redirect()->route('admin/products', compact('product'));
+        return redirect()->route('admin/products', compact('product'))->with("status", "The product {$product->id} was successfully removed!");
     }
 }

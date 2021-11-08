@@ -67,11 +67,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="category" class="col-md-4 col-form-lable text-md-right">{{__('Categories')}}</label>
+                    <label for="categories" class="col-md-4 col-form-lable text-md-right">{{__('Categories')}}</label>
                     <div class="col-md-6">
-                        @foreach($categories as $category)
-                        <option value="{{ $category['id'] }}" {{ $category['id'] === $product->category->id ? 'selected' : '' }}>{{ $category['name'] }}</option>
-                        @endforeach
+                        <select name="category_id" id="category" class="form-control @error('category') is-invalid @enderror">
+                            @foreach($categories as $category)
+                            <option value="{{ $category['id'] }}" {{ $category['id'] === $product->category->id ? 'selected' : '' }}>{{ $category['name'] }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
